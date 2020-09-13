@@ -92,4 +92,22 @@ Reload the page if the issue happens.
 
 (3) Sphere sometimes flys on Y axis.  
 
-The ping pong game is set on X and Z axis (Player move on Z axis). 
+The ping pong game is set on X and Z axis (Player move on Z axis).   
+
+# Reference
+
+Currently all support posts below are only Japanese. English version will be posted soon.  
+
+[UnityのようにBabylon.jsコンテンツが作れる「Babylon.js Editor」が大幅アップデートしていたので使い方を調べてみました](https://www.crossroad-tech.com/entry/babylonjs-editor-4beta2-review)  
+
+[Unityライクの操作になったBabylon.js Editorで簡単なゲームを作ります Vol.1（ステージ作成、操作）](https://www.crossroad-tech.com/entry/babylonjs-editor-4beta2-make-game1)  
+
+[Unityライクの操作になったBabylon.js Editorで簡単なゲームを作ります Vol.2（物理エンジン）](https://www.crossroad-tech.com/entry/babylonjs-editor-4beta2-make-game2)  
+
+[Unityライクの操作になったBabylon.js Editorで簡単なゲームを作ります Vol.3（衝突判定）](https://www.crossroad-tech.com/entry/babylonjs-editor-4beta2-make-game3)  
+
+[Unityライクの操作になったBabylon.js Editorで簡単なゲームを作ります Vol.4（GUIの追加）](https://www.crossroad-tech.com/entry/babylonjs-editor-4beta2-make-game4)  
+
+[Unityライクの操作になったBabylon.js Editorで簡単なゲームを作ります Vol.5（得点加算、ライフ変更、テキスト表示）](https://www.crossroad-tech.com/entry/babylonjs-editor-4beta2-make-game5)  
+
+[Unityライクの操作になったBabylon.js Editorで簡単なゲームを作ります Vol.6（サーバに格納して実行）](https://www.crossroad-tech.com/entry/babylonjs-editor-4beta2-make-game6)  
