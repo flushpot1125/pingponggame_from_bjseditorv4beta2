@@ -14,55 +14,61 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@babylonjs/core");
-var HUD_1 = require("./HUD");
-/**
- * This represents a script that is attached to a node in the editor.
- * Available nodes are:
- *      - Meshes
- *      - Lights
- *      - Cameas
- *      - Transform nodes
- *
- * You can extend the desired class according to the node type.
- * Example:
- *      export default class MyMesh extends Mesh {
- *          public onUpdate(): void {
- *              this.rotation.y += 0.04;
- *          }
- *      }
- * The functions "onStart" and "onUpdate" are called automatically.
- */
-var callOnceRemoveHeartsFlag = false;
-var ball = /** @class */ (function (_super) {
-    __extends(ball, _super);
+var BallComponent = /** @class */ (function (_super) {
+    __extends(BallComponent, _super);
     /**
      * Override constructor.
      * @warn do not fill.
      */
     // @ts-ignore ignoring the super call as we don't want to re-init
-    function ball() {
+    function BallComponent() {
         var _this = this;
+        _this._startPosition = null;
+        _this._startHeight = 0;
         return _this;
     }
     /**
+     * Called on the node is being initialized.
+     * This function is called immediatly after the constructor has been called.
+     */
+    BallComponent.prototype.onInitialize = function () {
+        this.physicsImpostor = new core_1.PhysicsImpostor(this, core_1.PhysicsImpostor.SphereImpostor, { mass: 1, friction: 0, restitution: 1 });
+        this.physicsImpostor.sleep();
+    };
+    /**
      * Called on the scene starts.
      */
-    ball.prototype.onStart = function () {
+    BallComponent.prototype.onStart = function () {
+        this._startPosition = this.position.clone();
+        this._startHeight = this.position.y;
     };
     /**
      * Called each frame.
      */
-    ball.prototype.onUpdate = function () {
-        if ((this.position.x < -28) && (callOnceRemoveHeartsFlag == false)) {
-            HUD_1.removeHeart();
-            callOnceRemoveHeartsFlag = true;
+    BallComponent.prototype.onUpdate = function () {
+        this.position.y = this._startHeight;
+        if (this.position.x < -30) {
+            this._scene.retry();
         }
     };
-    return ball;
+    /**
+     * Resets the ball component. Called typically when the player loses the ball.
+     */
+    BallComponent.prototype.reset = function () {
+        this.position.copyFrom(this._startPosition);
+        this.physicsImpostor.setAngularVelocity(core_1.Vector3.Zero());
+        this.physicsImpostor.setLinearVelocity(core_1.Vector3.Zero());
+        this.physicsImpostor.sleep();
+    };
+    /**
+     * Applies the start impulse. This is called on the game is started when the user presses
+     * the space key on the keyboard.
+     */
+    BallComponent.prototype.applyStartImpulse = function () {
+        this.physicsImpostor.wakeUp();
+        this.applyImpulse(new core_1.Vector3(45, 0, 45), this.getAbsolutePosition());
+    };
+    return BallComponent;
 }(core_1.Mesh));
-exports.default = ball;
-function setRemoveHeartsFlag(x) {
-    callOnceRemoveHeartsFlag = x;
-}
-exports.setRemoveHeartsFlag = setRemoveHeartsFlag;
+exports.default = BallComponent;
 //# sourceMappingURL=ball.js.map
