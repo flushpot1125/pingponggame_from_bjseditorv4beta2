@@ -1,69 +1,56 @@
-import { Mesh,PhysicsImpostor } from "@babylonjs/core";
-import { fromScene} from "../tools";
-import {addScore} from "./HUD";
+import { Mesh, PhysicsImpostor } from "@babylonjs/core";
 
-/**
- * This represents a script that is attached to a node in the editor.
- * Available nodes are:
- *      - Meshes
- *      - Lights
- *      - Cameas
- *      - Transform nodes
- * 
- * You can extend the desired class according to the node type.
- * Example:
- *      export default class MyMesh extends Mesh {
- *          public onUpdate(): void {
- *              this.rotation.y += 0.04;
- *          }
- *      }
- * The functions "onStart" and "onUpdate" are called automatically.
- */
-export default class block extends Mesh {
+import { fromScene } from "../tools";
+
+import BallComponent from "./ball";
+import GameComponent from "./game";
+
+export default class BlockComponent extends Mesh {
+    /**
+     * Redefine the scene as GameComponent as the scene as a script attached to it.
+     * @override
+     */
+    public _scene: GameComponent;
+
     @fromScene("ball")
-    _ball :Mesh;
-
-    private callFlag : boolean = false;
-
+    private _ball: BallComponent;
+    
     /**
      * Override constructor.
      * @warn do not fill.
      */
     // @ts-ignore ignoring the super call as we don't want to re-init
-    private constructor() { }
+    protected constructor() { }
+
+    /**
+     * Called on the node is being initialized.
+     * This function is called immediatly after the constructor has been called.
+     */
+    public onInitialize(): void {
+        this.physicsImpostor = new PhysicsImpostor(this, PhysicsImpostor.BoxImpostor, { mass: 0, friction: 0, restitution: 1 });
+        this.physicsImpostor.forceUpdate();
+    }
 
     /**
      * Called on the scene starts.
      */
     public onStart(): void {
-                
-        this.physicsImpostor = new PhysicsImpostor(this, PhysicsImpostor.BoxImpostor, { mass: 0, friction: 0, restitution: 1.0 });
+        // Register event to know when the block collides with the ball.
+        let onPhysicsCollideFunc: () => void;
+        this.physicsImpostor.registerOnPhysicsCollide(this._ball.physicsImpostor, onPhysicsCollideFunc = () => {
+            this.physicsImpostor.unregisterOnPhysicsCollide(this._ball.physicsImpostor, onPhysicsCollideFunc);
+            this.physicsImpostor.dispose();
 
-        // ...
+            this._scene.updateScore();
+
+            this.setEnabled(false);
+        });
     }
 
     /**
      * Called each frame.
      */
     public onUpdate(): void {
-                
-        if ((this.intersectsMesh(this._ball))  && this.callFlag== false){
-            this.callFlag=true;
-            console.log("collisioned!");
-           // this.dispose();
-           this.blockDispose();
-        }
-        
         // ...
     }
-
-    private async blockDispose():Promise<void>{
-        console.log("started");
-        const sleep =  (second) => new Promise(resolve => setTimeout(resolve, second ));
-        await sleep(200);
-        console.log("passed");
-        this.dispose();
-        addScore();
-    }
-    
 }

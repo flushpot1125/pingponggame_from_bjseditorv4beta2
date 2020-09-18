@@ -17,18 +17,8 @@
 			"base64": "data:image/png;base64,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"
 		}
 	],
-	"Graphs (Beta)": [],
+	"Visual Scripts (Beta)": [],
 	"Scripts": [
-		{
-			"id": "GameManager.ts",
-			"key": "GameManager.ts",
-			"base64": "../css/images/ts.png"
-		},
-		{
-			"id": "HUD.ts",
-			"key": "HUD.ts",
-			"base64": "../css/images/ts.png"
-		},
 		{
 			"id": "ball.ts",
 			"key": "ball.ts",
@@ -40,8 +30,8 @@
 			"base64": "../css/images/ts.png"
 		},
 		{
-			"id": "blockGenerator.ts",
-			"key": "blockGenerator.ts",
+			"id": "game.ts",
+			"key": "game.ts",
 			"base64": "../css/images/ts.png"
 		},
 		{
@@ -50,38 +40,36 @@
 			"base64": "../css/svg/folder-open.svg"
 		},
 		{
-			"id": "p_player.ts",
-			"key": "p_player.ts",
+			"id": "player.ts",
+			"key": "player.ts",
 			"base64": "../css/images/ts.png"
 		},
 		{
-			"id": "wall_center.ts",
-			"key": "wall_center.ts",
-			"base64": "../css/images/ts.png"
-		},
-		{
-			"id": "wall_left.ts",
-			"key": "wall_left.ts",
-			"base64": "../css/images/ts.png"
-		},
-		{
-			"id": "wall_right.ts",
-			"key": "wall_right.ts",
+			"id": "wall.ts",
+			"key": "wall.ts",
 			"base64": "../css/images/ts.png"
 		}
 	],
-	"Prefabs": [],
-	"Sounds": [],
+	"Prefabs (Beta)": [],
 	"Textures": [
-		{
-			"id": "backimage.jpg",
-			"key": "fd35a9a2-11ed-4ebd-b240-7984c132995e",
-			"base64": "/Users/takayuki/Documents/BJSEditor/PingPongGame/projects/scene/files/backimage.jpg"
-		},
 		{
 			"id": "wallimage.jpg",
 			"key": "237c9140-808f-4132-9bd0-f9afac68a51b",
-			"base64": "/Users/takayuki/Documents/BJSEditor/PingPongGame/projects/scene/files/wallimage.jpg"
+			"base64": "C:/Users/Julien Moreau-Mathis/Documents/Babylon/pingponggame_from_bjseditorv4beta2/projects/scene/files/wallimage.jpg"
+		},
+		{
+			"id": "backimage.jpg",
+			"key": "fd35a9a2-11ed-4ebd-b240-7984c132995e",
+			"base64": "C:/Users/Julien Moreau-Mathis/Documents/Babylon/pingponggame_from_bjseditorv4beta2/projects/scene/files/backimage.jpg"
+		},
+		{
+			"id": "heart.png",
+			"key": "7b495788-3f85-4e1b-b53a-8eadc47a299e",
+			"base64": "C:/Users/Julien Moreau-Mathis/Documents/Babylon/pingponggame_from_bjseditorv4beta2/projects/scene/files/heart.png",
+			"style": {
+				"border": "solid red"
+			}
 		}
-	]
+	],
+	"Sounds": []
 }

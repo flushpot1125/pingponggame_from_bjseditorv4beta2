@@ -1,29 +1,22 @@
 import { Mesh } from "@babylonjs/core";
-/**
- * This represents a script that is attached to a node in the editor.
- * Available nodes are:
- *      - Meshes
- *      - Lights
- *      - Cameas
- *      - Transform nodes
- *
- * You can extend the desired class according to the node type.
- * Example:
- *      export default class MyMesh extends Mesh {
- *          public onUpdate(): void {
- *              this.rotation.y += 0.04;
- *          }
- *      }
- * The functions "onStart" and "onUpdate" are called automatically.
- */
-export default class block extends Mesh {
-    _ball: Mesh;
-    private callFlag;
+import GameComponent from "./game";
+export default class BlockComponent extends Mesh {
+    /**
+     * Redefine the scene as GameComponent as the scene as a script attached to it.
+     * @override
+     */
+    _scene: GameComponent;
+    private _ball;
     /**
      * Override constructor.
      * @warn do not fill.
      */
-    private constructor();
+    protected constructor();
+    /**
+     * Called on the node is being initialized.
+     * This function is called immediatly after the constructor has been called.
+     */
+    onInitialize(): void;
     /**
      * Called on the scene starts.
      */
@@ -32,5 +25,4 @@ export default class block extends Mesh {
      * Called each frame.
      */
     onUpdate(): void;
-    private blockDispose;
 }

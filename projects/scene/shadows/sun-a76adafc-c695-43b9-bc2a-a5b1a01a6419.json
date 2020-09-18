@@ -1,6 +1,7 @@
 {
 	"className": "CascadedShadowGenerator",
 	"lightId": "a76adafc-c695-43b9-bc2a-a5b1a01a6419",
+	"id": "a76adafc-c695-43b9-bc2a-a5b1a01a6419",
 	"mapSize": 1024,
 	"forceBackFacesOnly": false,
 	"darkness": 0,
@@ -23,7 +24,19 @@
 	"blurScale": 2,
 	"useKernelBlur": false,
 	"renderList": [
-		"e22f3d3a-65b2-4993-8c52-cb05d2af8278"
+		"e22f3d3a-65b2-4993-8c52-cb05d2af8278",
+		"11703c5b-e613-4ad5-8843-5ae1d70a3a88",
+		"c3de791b-369d-4c88-b5de-518f1a2beda5",
+		"0805333e-addb-487b-832d-c2219d4385f5",
+		"5d4be541-1324-42c0-9ed4-101ada5846cd",
+		"0b00d7de-68d0-41cc-8ee1-c1a1131f41c7",
+		"064d83f6-0dcf-4edc-b95c-9a98a5464283",
+		"194e9f61-b57f-4d7a-a3d5-cfe83839af4c",
+		"a5ee494e-5863-405b-8ca6-7dc7b30fdc01",
+		"a90abd85-ebaf-4b3c-9202-90eb4a34406d",
+		"0f136f91-1d3b-492b-a077-be5e4f52d499",
+		"298a0136-d18b-43a2-ab4e-92f8621ddce8",
+		"b4c7739e-6ecc-4dc6-b2f1-0aed3e762577"
 	],
 	"numCascades": 4,
 	"debug": false,
