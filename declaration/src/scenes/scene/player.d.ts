@@ -5,6 +5,8 @@ export default class PlayerComponent extends Mesh {
      * @warn do not fill.
      */
     protected constructor();
+    private _wall_left;
+    private _wall_right;
     /**
      * Called on the node is being initialized.
      * This function is called immediatly after the constructor has been called.

@@ -8,6 +8,7 @@ export default class BallComponent extends Mesh {
     _scene: GameComponent;
     private _startPosition;
     private _startHeight;
+    private _player;
     /**
      * Override constructor.
      * @warn do not fill.

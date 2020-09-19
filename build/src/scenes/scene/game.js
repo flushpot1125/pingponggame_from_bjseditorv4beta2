@@ -52,6 +52,7 @@ var GameComponent = /** @class */ (function (_super) {
         this._gameMessageControl = new gui_1.TextBlock("startGame", "Please press space bar to start");
         this._gameMessageControl.color = "white";
         this._gameMessageControl.fontSize = 40;
+        this._gameMessageControl.fontFamily = "Viga";
         this.gui.addControl(this._gameMessageControl);
         // Create blocks counter
         this._counterControl = new gui_1.TextBlock("counter", "Blocks 0 / 8");
@@ -60,6 +61,7 @@ var GameComponent = /** @class */ (function (_super) {
         this._counterControl.textHorizontalAlignment = gui_1.Control.HORIZONTAL_ALIGNMENT_CENTER;
         this._counterControl.textVerticalAlignment = gui_1.Control.VERTICAL_ALIGNMENT_TOP;
         this._counterControl.paddingTop = 20;
+        this._counterControl.fontFamily = "Viga";
         this.gui.addControl(this._counterControl);
         // Create lifes controls
         this._lifesStackControl = new gui_1.StackPanel("lifes");
@@ -106,7 +108,7 @@ var GameComponent = /** @class */ (function (_super) {
             this._isPlaying = false;
         }
         else {
-            this._ball.reset();
+            //this._ball.reset();
             this._registerStartGameEvent();
         }
     };
@@ -129,6 +131,7 @@ var GameComponent = /** @class */ (function (_super) {
         // Register the space keyboard event to start the game.
         var spaceObservable = this.onKeyboardObservable.add(function (ev) {
             if (ev.event.keyCode === 32) { // space bar
+                _this._ball.reset();
                 _this._ball.applyStartImpulse();
                 _this.onKeyboardObservable.remove(spaceObservable);
                 _this._gameMessageControl.isVisible = false;

@@ -12,8 +12,15 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@babylonjs/core");
+var tools_1 = require("../tools");
 var BallComponent = /** @class */ (function (_super) {
     __extends(BallComponent, _super);
     /**
@@ -55,7 +62,8 @@ var BallComponent = /** @class */ (function (_super) {
      * Resets the ball component. Called typically when the player loses the ball.
      */
     BallComponent.prototype.reset = function () {
-        this.position.copyFrom(this._startPosition);
+        //this.position.copyFrom(this._startPosition);
+        this.position.copyFrom(this._player.getAbsolutePosition());
         this.physicsImpostor.setAngularVelocity(core_1.Vector3.Zero());
         this.physicsImpostor.setLinearVelocity(core_1.Vector3.Zero());
         this.physicsImpostor.sleep();
@@ -68,6 +76,9 @@ var BallComponent = /** @class */ (function (_super) {
         this.physicsImpostor.wakeUp();
         this.applyImpulse(new core_1.Vector3(45, 0, 45), this.getAbsolutePosition());
     };
+    __decorate([
+        tools_1.fromScene("player")
+    ], BallComponent.prototype, "_player", void 0);
     return BallComponent;
 }(core_1.Mesh));
 exports.default = BallComponent;

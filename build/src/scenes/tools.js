@@ -9,11 +9,11 @@ var core_1 = require("@babylonjs/core");
  * @param nodes the array of nodes to attach script (if exists).
  */
 function requireScriptForNodes(scriptsMap, nodes) {
-    var _a, _b, _c, _d, _e, _f, _g, _h, _j;
+    var _a, _b, _c, _d, _e, _f, _g, _h;
     var initializedNodes = [];
     // Initialize nodes
-    for (var _i = 0, _k = nodes; _i < _k.length; _i++) {
-        var n = _k[_i];
+    for (var _i = 0, nodes_1 = nodes; _i < nodes_1.length; _i++) {
+        var n = nodes_1[_i];
         if (!n.metadata || !n.metadata.script || !n.metadata.script.name || n.metadata.script.name === "None") {
             continue;
         }
@@ -21,22 +21,18 @@ function requireScriptForNodes(scriptsMap, nodes) {
         if (!exports_1) {
             continue;
         }
-        // Get prototype.
+        // Add prototype.
         var prototype = exports_1.default.prototype;
+        for (var key in prototype) {
+            if (!prototype.hasOwnProperty(key) || key === "constructor") {
+                continue;
+            }
+            n[key] = prototype[key].bind(n);
+        }
         // Call constructor
         prototype.constructor.call(n);
-        // Add prototype
-        do {
-            for (var key in prototype) {
-                if (!prototype.hasOwnProperty(key) || key === "constructor") {
-                    continue;
-                }
-                n[key] = prototype[key].bind(n);
-            }
-            prototype = Object.getPrototypeOf(prototype);
-        } while (((_a = prototype.constructor) === null || _a === void 0 ? void 0 : _a.IsComponent) === true);
         // Call onInitialize
-        (_b = n.onInitialize) === null || _b === void 0 ? void 0 : _b.call(n);
+        (_a = prototype.onInitialize) === null || _a === void 0 ? void 0 : _a.call(n);
         initializedNodes.push({ node: n, exports: exports_1 });
     }
     var _loop_1 = function (i) {
@@ -44,15 +40,15 @@ function requireScriptForNodes(scriptsMap, nodes) {
         var e = i.exports;
         var scene = i.node instanceof core_1.Scene ? i.node : i.node.getScene();
         // Check start
-        if (n.onStart) {
-            scene.onBeforeRenderObservable.addOnce(function () { return n.onStart(); });
+        if (e.default.prototype.onStart) {
+            scene.onBeforeRenderObservable.addOnce(function () { return n["onStart"](); });
         }
         // Check update
-        if (n.onUpdate) {
-            scene.onBeforeRenderObservable.add(function () { return n.onUpdate(); });
+        if (e.default.prototype.onUpdate) {
+            scene.onBeforeRenderObservable.add(function () { return n["onUpdate"](); });
         }
         // Check properties
-        var properties = (_c = n.metadata.script.properties) !== null && _c !== void 0 ? _c : {};
+        var properties = (_b = n.metadata.script.properties) !== null && _b !== void 0 ? _b : {};
         for (var key in properties) {
             var p = properties[key];
             switch (p.type) {
@@ -78,7 +74,7 @@ function requireScriptForNodes(scriptsMap, nodes) {
         }
         // Check linked children.
         if (n instanceof core_1.Node) {
-            var childrenLinks = (_d = e.default._ChildrenValues) !== null && _d !== void 0 ? _d : [];
+            var childrenLinks = (_c = e.default._ChildrenValues) !== null && _c !== void 0 ? _c : [];
             var _loop_2 = function (link) {
                 var child = n.getChildren((function (node) { return node.name === link.nodeName; }), true)[0];
                 n[link.propertyKey] = child;
@@ -89,14 +85,14 @@ function requireScriptForNodes(scriptsMap, nodes) {
             }
         }
         // Check linked nodes from scene.
-        var sceneLinks = (_e = e.default._SceneValues) !== null && _e !== void 0 ? _e : [];
+        var sceneLinks = (_d = e.default._SceneValues) !== null && _d !== void 0 ? _d : [];
         for (var _a = 0, sceneLinks_1 = sceneLinks; _a < sceneLinks_1.length; _a++) {
             var link = sceneLinks_1[_a];
             var node = scene.getNodeByName(link.nodeName);
             n[link.propertyKey] = node;
         }
         // Check particle systems
-        var particleSystemLinks = (_f = e.default._ParticleSystemValues) !== null && _f !== void 0 ? _f : [];
+        var particleSystemLinks = (_e = e.default._ParticleSystemValues) !== null && _e !== void 0 ? _e : [];
         var _loop_3 = function (link) {
             var ps = scene.particleSystems.filter(function (ps) { return ps.emitter === n && ps.name === link.particleSystemName; })[0];
             n[link.propertyKey] = ps;
@@ -106,7 +102,7 @@ function requireScriptForNodes(scriptsMap, nodes) {
             _loop_3(link);
         }
         // Check pointer events
-        var pointerEvents = (_g = e.default._PointerValues) !== null && _g !== void 0 ? _g : [];
+        var pointerEvents = (_f = e.default._PointerValues) !== null && _f !== void 0 ? _f : [];
         var _loop_4 = function (event_1) {
             scene.onPointerObservable.add(function (e) {
                 var _a;
@@ -126,7 +122,7 @@ function requireScriptForNodes(scriptsMap, nodes) {
             _loop_4(event_1);
         }
         // Check keyboard events
-        var keyboardEvents = (_h = e.default._KeyboardValues) !== null && _h !== void 0 ? _h : [];
+        var keyboardEvents = (_g = e.default._KeyboardValues) !== null && _g !== void 0 ? _g : [];
         var _loop_5 = function (event_2) {
             scene.onKeyboardObservable.add(function (e) {
                 if (event_2.type && e.type !== event_2.type) {
@@ -146,12 +142,12 @@ function requireScriptForNodes(scriptsMap, nodes) {
         }
         // Retrieve impostors
         if (n instanceof core_1.Mesh && !n.physicsImpostor) {
-            n.physicsImpostor = (_j = n._scene.getPhysicsEngine()) === null || _j === void 0 ? void 0 : _j.getImpostorForPhysicsObject(n);
+            n.physicsImpostor = (_h = n._scene.getPhysicsEngine()) === null || _h === void 0 ? void 0 : _h.getImpostorForPhysicsObject(n);
         }
     };
     // Configure initialized nodes
-    for (var _l = 0, initializedNodes_1 = initializedNodes; _l < initializedNodes_1.length; _l++) {
-        var i = initializedNodes_1[_l];
+    for (var _j = 0, initializedNodes_1 = initializedNodes; _j < initializedNodes_1.length; _j++) {
+        var i = initializedNodes_1[_j];
         _loop_1(i);
     }
 }

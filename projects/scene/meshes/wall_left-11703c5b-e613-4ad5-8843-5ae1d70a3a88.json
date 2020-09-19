@@ -4,7 +4,7 @@
 		{
 			"name": "wall_left",
 			"id": "11703c5b-e613-4ad5-8843-5ae1d70a3a88",
-			"uniqueId": 12,
+			"uniqueId": 10,
 			"type": "Mesh",
 			"tags": "modified",
 			"position": [

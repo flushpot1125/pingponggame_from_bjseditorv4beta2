@@ -55,14 +55,28 @@ var PlayerComponent = /** @class */ (function (_super) {
      * Moves the player on the left
      */
     PlayerComponent.prototype.moveLeft = function () {
-        this.position.z += 5;
+        if (this.intersectsMesh(this._wall_left)) {
+        }
+        else {
+            this.position.z += 5;
+        }
     };
     /**
      * Moves the player on the right.
      */
     PlayerComponent.prototype.moveRight = function () {
-        this.position.z -= 5;
+        if (this.intersectsMesh(this._wall_right)) {
+        }
+        else {
+            this.position.z -= 5;
+        }
     };
+    __decorate([
+        tools_1.fromScene("wall_left")
+    ], PlayerComponent.prototype, "_wall_left", void 0);
+    __decorate([
+        tools_1.fromScene("wall_right")
+    ], PlayerComponent.prototype, "_wall_right", void 0);
     __decorate([
         tools_1.onKeyboardEvent(65, core_1.KeyboardEventTypes.KEYDOWN)
     ], PlayerComponent.prototype, "moveLeft", null);

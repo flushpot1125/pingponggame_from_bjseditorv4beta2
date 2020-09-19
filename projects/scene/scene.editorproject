@@ -33,30 +33,30 @@
 		}
 	],
 	"textures": [
-		"backimage.jpg-396.json",
 		"wallimage.jpg-400.json",
+		"backimage.jpg-396.json",
 		"heart.png-83.json"
 	],
 	"meshes": [
 		"sky-6a927ea7-51d9-4248-9b80-4d34b53b386e.json",
-		"ground-0ea78d97-3c1f-4911-8d78-2b4cd65a0424.json",
-		"block10-5d4be541-1324-42c0-9ed4-101ada5846cd.json",
 		"wall_right-c3de791b-369d-4c88-b5de-518f1a2beda5.json",
 		"wall_left-11703c5b-e613-4ad5-8843-5ae1d70a3a88.json",
-		"player-298a0136-d18b-43a2-ab4e-92f8621ddce8.json",
 		"block01-0b00d7de-68d0-41cc-8ee1-c1a1131f41c7.json",
-		"ball-b4c7739e-6ecc-4dc6-b2f1-0aed3e762577.json",
+		"block10-5d4be541-1324-42c0-9ed4-101ada5846cd.json",
+		"ground-0ea78d97-3c1f-4911-8d78-2b4cd65a0424.json",
 		"block11-a5ee494e-5863-405b-8ca6-7dc7b30fdc01.json",
 		"block02-194e9f61-b57f-4d7a-a3d5-cfe83839af4c.json",
 		"block13-0f136f91-1d3b-492b-a077-be5e4f52d499.json",
-		"block12-a90abd85-ebaf-4b3c-9202-90eb4a34406d.json",
+		"ball-b4c7739e-6ecc-4dc6-b2f1-0aed3e762577.json",
 		"block00-0805333e-addb-487b-832d-c2219d4385f5.json",
 		"block03-064d83f6-0dcf-4edc-b95c-9a98a5464283.json",
-		"wall_center-e22f3d3a-65b2-4993-8c52-cb05d2af8278.json"
+		"wall_center-e22f3d3a-65b2-4993-8c52-cb05d2af8278.json",
+		"block12-a90abd85-ebaf-4b3c-9202-90eb4a34406d.json",
+		"player-298a0136-d18b-43a2-ab4e-92f8621ddce8.json"
 	],
 	"transformNodes": [
-		"walls-ea86735f-1c08-4dee-8a16-12a37d9ab3a7.json",
-		"blocks-7fc6c9a6-eb6a-4ea7-bdcf-dc8bfac92efb.json"
+		"blocks-7fc6c9a6-eb6a-4ea7-bdcf-dc8bfac92efb.json",
+		"walls-ea86735f-1c08-4dee-8a16-12a37d9ab3a7.json"
 	],
 	"particleSystems": [],
 	"lights": [
@@ -294,7 +294,7 @@
 	"project": {
 		"camera": {
 			"tags": "modified",
-			"alpha": 3.4327550120342343,
+			"alpha": 3.432755012034234,
 			"beta": 1.186399571445932,
 			"radius": 45.2786055940833,
 			"target": [
@@ -330,9 +330,9 @@
 			],
 			"speed": 2,
 			"position": [
-				-40.20772463895889,
+				-40.207724638958894,
 				16.979476294111233,
-				-12.049414453819953
+				-12.049414453819937
 			],
 			"upVector": [
 				0,
