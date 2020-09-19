@@ -41,6 +41,7 @@ export default class GameComponent extends Scene {
         this._gameMessageControl = new TextBlock("startGame", "Please press space bar to start");
         this._gameMessageControl.color = "white";
         this._gameMessageControl.fontSize = 40;
+        this._gameMessageControl.fontFamily ="Viga";
         this.gui.addControl(this._gameMessageControl);
 
         // Create blocks counter
@@ -50,6 +51,7 @@ export default class GameComponent extends Scene {
         this._counterControl.textHorizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
         this._counterControl.textVerticalAlignment = Control.VERTICAL_ALIGNMENT_TOP;
         this._counterControl.paddingTop = 20;
+        this._counterControl.fontFamily ="Viga";
         this.gui.addControl(this._counterControl);
 
         // Create lifes controls
@@ -104,7 +106,7 @@ export default class GameComponent extends Scene {
             
             this._isPlaying = false;
         } else {
-            this._ball.reset();
+            //this._ball.reset();
             this._registerStartGameEvent();
         }
     }
@@ -129,6 +131,7 @@ export default class GameComponent extends Scene {
         // Register the space keyboard event to start the game.
         const spaceObservable = this.onKeyboardObservable.add((ev) => {
             if (ev.event.keyCode === 32) { // space bar
+                this._ball.reset();
                 this._ball.applyStartImpulse();
                 this.onKeyboardObservable.remove(spaceObservable);
 

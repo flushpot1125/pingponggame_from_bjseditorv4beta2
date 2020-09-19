@@ -1,5 +1,5 @@
 import { Mesh, KeyboardEventTypes, PhysicsImpostor } from "@babylonjs/core";
-import { onKeyboardEvent } from "../tools";
+import { onKeyboardEvent,fromScene } from "../tools";
 
 export default class PlayerComponent extends Mesh {
     /**
@@ -9,6 +9,11 @@ export default class PlayerComponent extends Mesh {
     // @ts-ignore ignoring the super call as we don't want to re-init
     protected constructor() { }
 
+    @fromScene("wall_left")
+    private _wall_left: Mesh;
+
+    @fromScene("wall_right")
+    private _wall_right: Mesh;
     /**
      * Called on the node is being initialized.
      * This function is called immediatly after the constructor has been called.
@@ -36,7 +41,10 @@ export default class PlayerComponent extends Mesh {
      */
     @onKeyboardEvent(65, KeyboardEventTypes.KEYDOWN)
     protected moveLeft(): void {
-        this.position.z += 5;
+        if (this.intersectsMesh(this._wall_left)){
+        }else{
+            this.position.z += 5;
+        }
     }
 
     /**
@@ -44,6 +52,9 @@ export default class PlayerComponent extends Mesh {
      */
     @onKeyboardEvent(68, KeyboardEventTypes.KEYDOWN)
     protected moveRight(): void {
-        this.position.z -= 5;
+        if (this.intersectsMesh(this._wall_right)){
+        }else{
+            this.position.z -= 5;
+        }
     }
 }

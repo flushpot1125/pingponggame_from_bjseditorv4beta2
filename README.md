@@ -4,7 +4,9 @@
 
 Babylon.js Editor has been updated as wonderful WebGL contents editor like Unity.  
 
-The repository is an example of Babylon.js Editor project. 
+The repository is an example of Babylon.js Editor project.   
+
+Environment :  Babylon.js Editor v4.0 beta7 or later
 
 # Make environment of Babylon.js Editor
 
@@ -59,40 +61,6 @@ Another preview window is showed. You can also check your own browser by accessi
 ![](./forReadme/game_scene.gif)  
 
 The repo is an experimental trial of Babylon.js Editor.  Therefore each of code are not refactored.
-
-# Known issues
-
-(1) Player can not move if you keep pressing A/D key at the end of left or right side.  
-
-The following code in "p_player.ts" causes the issue. I'll fix it soon.
-
-```ts
-   //65 : A
-    @onKeyboardEvent([65], KeyboardEventTypes.KEYDOWN)
-    private _moveLeft():void{
-        if( (this.position.z >= -21)&&(this.position.z <= 21)  ){
-            this.translate( new Vector3(0,0,0.5),6,Space.WORLD);
-           // console.log(this.position.z);
-        }
-    }
-
-   //68 : D
-    @onKeyboardEvent([68], KeyboardEventTypes.KEYDOWN)
-    private _moveRight():void{
-        if( (this.position.z >= -21)&&(this.position.z <= 21)  ){
-         this.translate( new Vector3(0,0,-0.5),6,Space.WORLD);
-       //  console.log(this.position.z);
-        }
-    }
-```
-
-(2) Sphere sometimes does not back to player   
-
-Reload the page if the issue happens.   
-
-(3) Sphere sometimes flys on Y axis.  
-
-The ping pong game is set on X and Z axis (Player move on Z axis).   
 
 # Reference
 

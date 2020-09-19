@@ -1,5 +1,6 @@
 import { Mesh, PhysicsImpostor, Vector3 } from "@babylonjs/core";
 import GameComponent from "./game";
+import { fromScene } from "../tools";
 
 export default class BallComponent extends Mesh {
     /**
@@ -10,6 +11,9 @@ export default class BallComponent extends Mesh {
 
     private _startPosition: Vector3 = null;
     private _startHeight: number = 0;
+
+    @fromScene("player")
+    private _player: Mesh;
 
     /**
      * Override constructor.
@@ -50,8 +54,8 @@ export default class BallComponent extends Mesh {
      * Resets the ball component. Called typically when the player loses the ball.
      */
     public reset(): void {
-        this.position.copyFrom(this._startPosition);
-
+        //this.position.copyFrom(this._startPosition);
+        this.position.copyFrom(this._player.getAbsolutePosition());
         this.physicsImpostor.setAngularVelocity(Vector3.Zero());
         this.physicsImpostor.setLinearVelocity(Vector3.Zero());
         this.physicsImpostor.sleep();
